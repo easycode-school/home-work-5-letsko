@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,6 @@ import { NgForm } from '@angular/forms';
 })
 export class TodosFormComponent implements OnInit {
   @Output() addNewTodo = new EventEmitter();
-  @ViewChild('addTodoForm') form: NgForm;
 
   constructor() { }
   ngOnInit() { }
@@ -21,13 +20,13 @@ export class TodosFormComponent implements OnInit {
    *    2. Забирает объект значений input-ов формы и выбрасывает его в обработчик добавления новой задачи в родительской компоненте;
    *    3. Очищает форму добавления задачи.
    */
-  onSubmitHandler(form: any): void {
+  protected onSubmitHandler(form: any): void {
     if (form.invalid) {
       return console.log('заполните все поля');
     }
 
     this.addNewTodo.emit(form.value);
-    this.clearForm(this.form);
+    this.clearForm(form);
   }
 
   /**
@@ -35,7 +34,7 @@ export class TodosFormComponent implements OnInit {
    * @param title - input загаловка задачи
    * @param text - input текста задачи
    */
-  clearForm(form: any): void {
+  protected clearForm(form: any): void {
     form.resetForm();
   }
 }
