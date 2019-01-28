@@ -1,0 +1,27 @@
+<div class="container">
+    <app-todos-form (addNewTodo)="onAddTodoHandler($event)"></app-todos-form>
+    <div class="row mt-5" *ngIf="todosArray.length">
+        <div class="col-8 mx-auto">
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Заголовок</th>
+                            <th scope="col">Текст</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let todo of todosArray">
+                        <tr>
+                            <td><p>{{ todo.title }}</p></td>
+                            <td><p>{{ todo.text }}</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.col-8 mx-auto -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
